@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlatformController : MonoBehaviour
 {
-    [SerializeField] List<GameObject> platforms = new List<GameObject>();
-    [SerializeField] GameObject spawnPlatform;
-    bool isSpawned = false;
+    public List<GameObject> platforms = new List<GameObject>();
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +17,6 @@ public class PlatformController : MonoBehaviour
     void Update()
     {
         MovePlatform();
-        EliminatePlatform();
-        InstatiatePlatform();
     }
 
     void MovePlatform()
@@ -28,30 +26,10 @@ public class PlatformController : MonoBehaviour
             platforms[i].transform.position = Vector2.MoveTowards(platforms[i].transform.position, new Vector2(-100, platforms[i].transform.position.y), 0.1f);
         }
     }
-    void EliminatePlatform()
-    {
-        if (platforms[0].gameObject.transform.position.x < -30)
-        {
-            Destroy(platforms[0]);
-            platforms.RemoveAt(0);
-        }
-    }
-
-    void InstatiatePlatform()
-    {
-        if (platforms[0].gameObject.transform.position.x < -26 && !isSpawned)
-        {
-            float randomNumber = Random.RandomRange(5, 19);
-            spawnPlatform.transform.localScale = new Vector2(randomNumber, platforms[0].transform.localScale.y);
-            randomNumber = Random.Range(24.6f, 30);
-            Instantiate(spawnPlatform, new Vector2(randomNumber, platforms[0].transform.position.y), Quaternion.identity);
-            isSpawned = true;
-        }
-
-        else if (platforms[0].gameObject.transform.position.x > -26)
-            isSpawned = false;
-    }
-
 
     //FARE ELIMINATEPLATFORM E INSTATIATE NEL COLLISIONENTER
+
+
+
+
 }
