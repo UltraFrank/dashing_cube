@@ -41,10 +41,10 @@ public class PlatformController : MonoBehaviour
     {
         if (platforms[0].gameObject.transform.position.x < -26 && !isSpawned)
         {
-            float randomNumber = Random.RandomRange(5, 19);
+            float randomNumber = Random.Range(4, 12);
             spawnPlatform.transform.localScale = new Vector2(randomNumber, platforms[0].transform.localScale.y);
-            randomNumber = Random.Range(24.6f, 30);
-            Instantiate(spawnPlatform, new Vector2(randomNumber, platforms[0].transform.position.y), Quaternion.identity);
+            randomNumber = Random.Range(24.6f, 27);
+            platforms.Add(Instantiate(spawnPlatform, new Vector2(randomNumber, platforms[0].transform.position.y), Quaternion.identity));
             isSpawned = true;
         }
 
