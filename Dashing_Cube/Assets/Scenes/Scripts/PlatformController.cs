@@ -26,37 +26,5 @@ public class PlatformController : MonoBehaviour
             platforms[i].transform.position = Vector2.MoveTowards(platforms[i].transform.position, new Vector2(-100, platforms[i].transform.position.y), 0.1f);
         }
     }
-<<<<<<< HEAD
-=======
-    void EliminatePlatform()
-    {
-        if (platforms[0].gameObject.transform.position.x < -30)
-        {
-            Destroy(platforms[0]);
-            platforms.RemoveAt(0);
-        }
-    }
-
-    void InstatiatePlatform()
-    {
-        if (platforms[0].gameObject.transform.position.x < -26 && !isSpawned)
-        {
-            float randomNumber = Random.Range(4, 12);
-            spawnPlatform.transform.localScale = new Vector2(randomNumber, platforms[0].transform.localScale.y);
-            randomNumber = Random.Range(24.6f, 27);
-            platforms.Add(Instantiate(spawnPlatform, new Vector2(randomNumber, platforms[0].transform.position.y), Quaternion.identity));
-            isSpawned = true;
-        }
-
-        else if (platforms[0].gameObject.transform.position.x > -26)
-            isSpawned = false;
-    }
-
->>>>>>> 3fa1a70daac5f777a3b58bed8abf023e8d352d25
-
-    //FARE ELIMINATEPLATFORM E INSTATIATE NEL COLLISIONENTER
-
-
-
 
 }
