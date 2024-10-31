@@ -13,7 +13,6 @@ public class PlatformDestroy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Ciao2");
         if (collision.gameObject.tag == "Platform" && !isDestroyed)
         {
             Destroy(platformController.platforms[0]);
