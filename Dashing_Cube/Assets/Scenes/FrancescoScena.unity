@@ -771,6 +771,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 630433556}
+  - component: {fileID: 630433557}
   m_Layer: 0
   m_Name: Game Session
   m_TagString: Untagged
@@ -796,6 +797,18 @@ Transform:
   m_Father: {fileID: 13730376}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &630433557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630433555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e181ad131f444de4981351783a8354ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &634293186
 GameObject:
   m_ObjectHideFlags: 0
@@ -2833,7 +2846,7 @@ GameObject:
   - component: {fileID: 1973174422}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3097,10 +3110,11 @@ MonoBehaviour:
   - {fileID: 2121632781}
   - {fileID: 175606408}
   - {fileID: 1865320702}
-  speed: 0.02
+  speed: 0.15
   metersText: {fileID: 1733578156}
   timer: 0
   meters: 0
+  isInPause: 0
 --- !u!1 &2121632781 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 454360508924388741, guid: c238a53cc4a438341bbeb8e358ef7909, type: 3}
