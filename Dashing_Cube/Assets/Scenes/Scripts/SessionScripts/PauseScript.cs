@@ -7,6 +7,8 @@ public class PauseScript : MonoBehaviour
     PlatformController platformController;
     Rigidbody2D playerRB;
     float baseSpeed = 0;
+
+    [SerializeField] GameObject pauseBar;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,15 +30,16 @@ public class PauseScript : MonoBehaviour
             platformController.speed = 0;
             playerRB = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Rigidbody2D>();
             playerRB.Sleep();
-            Debug.Log("Menu attivo di pausa");
+            pauseBar.SetActive(true);
+            
             platformController.isInPause = true;
         }
         else if(Input.GetKeyDown(KeyCode.Escape) && platformController.isInPause == true)
         {
+            pauseBar.SetActive(false);
             platformController.speed = baseSpeed;
             playerRB.sleepMode = 0;
             platformController.isInPause = false;
-            Debug.Log("Menu disattivato");
 
         }
     }

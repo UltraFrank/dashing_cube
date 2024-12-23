@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameSessionEndController : MonoBehaviour
 {
+    [SerializeField] GameObject PlatformSpawner;
     public bool isDead = false;
     public bool sessionEnd = false;
     public int coins;
@@ -30,8 +31,13 @@ public class GameSessionEndController : MonoBehaviour
 
     }
 
+    public void SessionStarting()
+    {
+        PlatformSpawner.SetActive(true);
+    }
     public void SessionEnding()
     {
+        PlatformSpawner.SetActive(false);
         sessionEnd = true;
     }
 }
