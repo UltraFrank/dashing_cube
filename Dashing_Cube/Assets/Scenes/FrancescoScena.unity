@@ -1471,6 +1471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 671413596}
   - component: {fileID: 671413597}
+  - component: {fileID: 671413598}
   m_Layer: 0
   m_Name: GameSessionEnd
   m_TagString: Untagged
@@ -1508,6 +1509,19 @@ MonoBehaviour:
   isDead: 0
   sessionEnd: 0
   coins: 0
+  fileManager: {fileID: 671413598}
+--- !u!114 &671413598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 671413595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff0976434f93abc49ab56c4aea78a514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &743689531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1630,8 +1644,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: df2e2679dd0df484a8de47dd497d8318, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.023
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2908,7 +2922,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 22b76a53b2927974fb57cb459e0003c4, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.023
   m_Pitch: 1
   Loop: 0
   Mute: 0

@@ -62,6 +62,9 @@ public class PlatformController : MonoBehaviour
     {
         yield return new WaitForSeconds(5);
         speed = 0.05f;
+        if (isInPause)
+            timer += 0;
+        else
         timer = 0;
         playerMovement = true;
     }
