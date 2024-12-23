@@ -11,12 +11,15 @@ public class PlatformController : MonoBehaviour
     [SerializeField] TextMeshProUGUI metersText;
     public float timer = 0;
     public int meters = 0;
-    public Boolean isInPause = false;
+    public bool isInPause = false;
+    public bool playerMovement = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        speed = 0;
+        StartCoroutine(GameStarting());
     }
 
     // Update is called once per frame
@@ -24,11 +27,12 @@ public class PlatformController : MonoBehaviour
     {
         MovePlatform();
         SpeedOMeter();
+        BreakFromPause();
     }
 
-    void MovePlatform()
+    void MovePlatform() //Movimento Piattaforme
     {
-        for(int i = 0; i < platforms.Count; i++)
+        for (int i = 0; i < platforms.Count; i++)
         {
             platforms[i].transform.position = Vector2.MoveTowards(platforms[i].transform.position, new Vector2(-100, platforms[i].transform.position.y), speed);
         }
@@ -36,7 +40,7 @@ public class PlatformController : MonoBehaviour
 
     void SpeedOMeter()
     {
-        if(!isInPause)
+        if (!isInPause)
         {
             timer += Time.deltaTime;
             meters = (int)(timer * speed * 150); //Calcolo dei metri con il processo inverso di metri/secondo della velocità * 150 che è un numero fittizio per renderlo realistico
@@ -45,4 +49,20 @@ public class PlatformController : MonoBehaviour
 
     }
 
+    void BreakFromPause() //Fine della pausa e inizio dei secondi di attesa
+    {
+        if(isInPause && Input.GetKeyDown(KeyCode.Escape))
+        {
+            speed = 0;
+            StartCoroutine(GameStarting());
+        }
+    }
+
+    IEnumerator GameStarting() //Il calcolo dei secondi di attesa effettivi
+    {
+        yield return new WaitForSeconds(5);
+        speed = 0.05f;
+        timer = 0;
+        playerMovement = true;
+    }
 }

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float yJump = 0;
-    bool onTheField = true;
+    //Gestirà salto, session ending del player e starting position del suddetto
+    [SerializeField] float yJump = 0; //Quanto salta
+    bool onTheField = true; //Per evitare che possa fare un doppio salto
     Vector2 ogPosition;
 
     private void Start()
     {
+        this.gameObject.GetComponent<Rigidbody2D>().Sleep();
         this.ogPosition = transform.position;
     }
 
@@ -17,8 +19,9 @@ public class PlayerController : MonoBehaviour
     {
         Jump();
         GameOver();
+        HandlePlayer();
     }
-    void Jump()
+    void Jump() //Metodo del salto
     {
         if (onTheField)
         {
@@ -31,13 +34,13 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) //Metodo per considerare il limite di salto
     {
         if (collision.gameObject.tag == "Platform")
             onTheField = true;
     }
 
-    private void GameOver()
+    private void GameOver() //Fine della sessione appena il player si trova sotto -12
     {
         if(this.gameObject.transform.position.y < -12)
         {
@@ -46,5 +49,14 @@ public class PlayerController : MonoBehaviour
         }
 
 
+    }
+
+    private void HandlePlayer() //Gestione del player: nell'if potrà muoversi (dopo i sec passati a inizio sessione o dopo pausa); nell'else si fermerà
+    {
+        if (FindObjectOfType<PlatformController>().playerMovement)
+            this.gameObject.GetComponent<Rigidbody2D>().sleepMode = 0;
+
+        else
+            this.gameObject.GetComponent<Rigidbody2D>().Sleep();
     }
 }

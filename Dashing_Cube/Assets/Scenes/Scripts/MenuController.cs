@@ -12,6 +12,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject gameSession;
     [SerializeField] GameObject coinsText;
     [SerializeField] Button[] selectDifficulty;
+    [SerializeField] AudioSource[] musics;
 
     private bool isGameActive = false;
     GameSessionEndController gameSessionEndController;
@@ -21,6 +22,7 @@ public class MenuController : MonoBehaviour
     void Start()
     {
         gameSessionEndController = gameObject.GetComponentInChildren<GameSessionEndController>();
+        musics[0].Play();
     }
 
     // Update is called once per frame
@@ -40,7 +42,8 @@ public class MenuController : MonoBehaviour
     {
         chooseLevel.SetActive(false);
         gameSession.SetActive(true);
-
+        musics[0].Pause();
+        musics[1].Play();
     }
 
     private void HandleSession()
