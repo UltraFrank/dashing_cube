@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     bool onTheField = true; //Per evitare che possa fare un doppio salto
     Vector2 ogPosition;
 
+    [SerializeField] private AudioClip jumpClip;
+
     private void Start()
     {
         this.gameObject.GetComponent<Rigidbody2D>().Sleep();
@@ -28,6 +30,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * yJump, ForceMode2D.Impulse);
+                SoundEffectsManager.instance.PlaySoundEffectClip(jumpClip, transform, 1f);
                 onTheField = false;
             }
         }
