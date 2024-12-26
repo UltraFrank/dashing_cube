@@ -18,6 +18,11 @@ public class PlatformController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Init();
+    }
+
+    public void Init()
+    {
         speed = 0;
         StartCoroutine(GameStarting());
     }
