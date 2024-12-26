@@ -8,11 +8,12 @@ public class GameSessionEndController : MonoBehaviour
     public bool isDead = false;
     public bool sessionEnd = false;
     public int coins;
-    public FileManager fileManager;
+    FileManager fileManager;
     // Start is called before the first frame update
     void Start()
     {
-       fileManager = FindObjectOfType<FileManager>();
+        fileManager = this.gameObject.GetComponent<FileManager>();
+        coins = fileManager.LoadData();
     }
 
     // Update is called once per frame
@@ -40,6 +41,5 @@ public class GameSessionEndController : MonoBehaviour
     {
         PlatformSpawner.SetActive(false);
         sessionEnd = true;
-        fileManager.inizialize();
     }
 }
