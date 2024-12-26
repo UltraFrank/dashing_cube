@@ -15,14 +15,19 @@ public class MenuController : MonoBehaviour
     [SerializeField] AudioSource[] musics;
 
     private bool isGameActive = false;
+    FileManager fileManager;
     GameSessionEndController gameSessionEndController;
+    PlatformController platformController;
 
-    private int coins = 0;
+    public int coins = 0;
     // Start is called before the first frame update
     void Start()
     {
         gameSessionEndController = gameObject.GetComponentInChildren<GameSessionEndController>();
+        platformController = gameObject.GetComponentInChildren<PlatformController>();
+        fileManager = gameObject.GetComponentInChildren<FileManager>();
         musics[0].Play();
+        FirstStart();
     }
 
     // Update is called once per frame
@@ -37,11 +42,12 @@ public class MenuController : MonoBehaviour
         menuTab.SetActive(false);
         chooseLevel.SetActive(true);
     }
-
     public void GoToNormalLevel()
     {
         chooseLevel.SetActive(false);
         gameSession.SetActive(true);
+        this.gameObject.GetComponentInChildren<PlatformController>().Init();
+        this.gameObject.GetComponentInChildren<PlatformController>().playerMovement = false;
         musics[0].Pause();
         musics[1].Play();
     }
@@ -60,6 +66,14 @@ public class MenuController : MonoBehaviour
             gameSessionEndController.isDead = false;
             gameSession.SetActive(false);
             menuTab.SetActive(true);
+            fileManager.inizialize();
         }
     }
+    private void FirstStart()
+    {
+        coins += gameSessionEndController.coins;
+        coinsText.gameObject.GetComponent<TextMeshProUGUI>().text = "Coins: " + coins;
+    }
 }
+
+

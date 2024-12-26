@@ -1045,6 +1045,9 @@ MonoBehaviour:
   gameSession: {fileID: 1209774961}
   coinsText: {fileID: 2069361763}
   selectDifficulty: []
+  musics:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &798165355
 Transform:
   m_ObjectHideFlags: 0
@@ -2732,6 +2735,7 @@ MonoBehaviour:
   timer: 0
   meters: 0
   isInPause: 0
+  playerMovement: 0
 --- !u!1 &1938752782
 GameObject:
   m_ObjectHideFlags: 0
