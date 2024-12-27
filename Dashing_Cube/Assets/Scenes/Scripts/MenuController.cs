@@ -28,6 +28,7 @@ public class MenuController : MonoBehaviour
         fileManager = gameObject.GetComponentInChildren<FileManager>();
         FirstStart();
         musics[0].Play();
+        fileManager.filePath = Application.persistentDataPath + "/gameData.json";
     }
 
     // Update is called once per frame

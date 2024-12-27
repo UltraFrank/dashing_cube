@@ -11,7 +11,7 @@ public class Data
 }
 public class FileManager : MonoBehaviour
 {
-    private string filePath = "C:/Users/Utente/AppData/LocalLow/DefaultCompany/Dashing_Cube/gameData.json";
+    public string filePath;
     // Update is called once per frame
     public void inizialize()
     {
@@ -24,7 +24,6 @@ public class FileManager : MonoBehaviour
             return;
         }
 
-        filePath = Application.persistentDataPath + "/gameData.json";
         Debug.Log("" + filePath);
         data.coin = trueCoins;
         Debug.Log("" + data.coin);
@@ -38,15 +37,10 @@ public class FileManager : MonoBehaviour
 
     public int LoadData()
     {
-        if (File.Exists(filePath))
-        {
-            string json = File.ReadAllText(filePath);
-            Data coins = JsonUtility.FromJson<Data>(json);
-            Debug.Log(coins.coin);
-            return coins.coin;
-        }
-        else
-            Debug.Log("Filepath non corretto :" + filePath);
-        return 0;
+        filePath = Application.persistentDataPath + "/gameData.json";
+        string json = File.ReadAllText(filePath);
+        Data coins = JsonUtility.FromJson<Data>(json);
+        Debug.Log(coins.coin);
+        return coins.coin;
     }
 }
