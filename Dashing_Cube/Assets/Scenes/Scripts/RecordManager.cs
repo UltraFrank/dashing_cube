@@ -18,7 +18,7 @@ public class RecordManager : MonoBehaviour
     // Update is called once per frame
     public void inizializeRecord()
     {
-        GameSessionEndController controller = FindObjectOfType<GameSessionEndController>();
+        PlatformController controller = FindObjectOfType<PlatformController>();
 
         meters = controller.meters;
         record.record = meters;

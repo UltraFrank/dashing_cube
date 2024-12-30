@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 13730376}
   - component: {fileID: 13730377}
+  - component: {fileID: 13730378}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -184,6 +185,20 @@ MonoBehaviour:
   - {fileID: 1713461094}
   - {fileID: 860496340}
   coins: 0
+--- !u!114 &13730378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 13730375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8882f42ac525e04cac4bf461af2c3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meters: 0
+  RecordFilePath: 
 --- !u!1 &16536473
 GameObject:
   m_ObjectHideFlags: 0
@@ -2679,6 +2694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlatformSpawner: {fileID: 634293186}
+  restartTab: {fileID: 605043117}
   isDead: 0
   sessionEnd: 0
   coins: 0

@@ -6,6 +6,7 @@ public class PauseScript : MonoBehaviour
 {
     PlatformController platformController;
     Rigidbody2D playerRB;
+    RecordManager recordManager;
     float baseSpeed = 0;
 
     float numberPause = 0;
@@ -16,6 +17,7 @@ public class PauseScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        recordManager = gameObject.GetComponentInParent<RecordManager>();
         platformController = GetComponentInChildren<PlatformController>();
     }
 
@@ -54,7 +56,8 @@ public class PauseScript : MonoBehaviour
     }
 
     public void RestartGame()
-    { 
+    {
+        recordManager.inizializeRecord();
         baseSpeed = platformController.speed;
         platformController.speed = 0;
         playerRB = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Rigidbody2D>();

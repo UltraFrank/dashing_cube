@@ -18,7 +18,6 @@ public class MenuController : MonoBehaviour
     private bool isGameActive = false;
     GameSessionEndController gameSessionEndController;
     FileManager fileManager;
-    RecordManager recordManager;
     PlatformController platformController;
 
     public int coins = 0;
@@ -28,7 +27,6 @@ public class MenuController : MonoBehaviour
         gameSessionEndController = gameObject.GetComponentInChildren<GameSessionEndController>();
         platformController = gameObject.GetComponentInChildren<PlatformController>();
         fileManager = gameObject.GetComponentInChildren<FileManager>();
-        recordManager = gameObject.GetComponentInChildren<RecordManager>();
         FirstStart();
         musics[0].Play();
     }
@@ -62,7 +60,6 @@ public class MenuController : MonoBehaviour
 
         if (isGameActive == true)
         {
-            recordManager.inizializeRecord();
             coins += gameSessionEndController.coins;
             coinsText.gameObject.GetComponent<TextMeshProUGUI>().text = "Coins: " + coins;
             isGameActive = false;
