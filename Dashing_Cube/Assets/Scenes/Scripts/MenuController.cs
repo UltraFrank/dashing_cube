@@ -10,7 +10,6 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject chooseLevel;
     [SerializeField] GameObject menuTab;
     [SerializeField] GameObject gameSession;
-    [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject coinsText;
     [SerializeField] Button[] selectDifficulty;
     [SerializeField] AudioSource[] musics;
@@ -18,6 +17,7 @@ public class MenuController : MonoBehaviour
     private bool isGameActive = false;
     GameSessionEndController gameSessionEndController;
     FileManager fileManager;
+    RecordManager recordManager;
     PlatformController platformController;
 
     public int coins = 0;
@@ -27,9 +27,9 @@ public class MenuController : MonoBehaviour
         gameSessionEndController = gameObject.GetComponentInChildren<GameSessionEndController>();
         platformController = gameObject.GetComponentInChildren<PlatformController>();
         fileManager = gameObject.GetComponentInChildren<FileManager>();
+        recordManager = gameObject.GetComponentInChildren<RecordManager>();
         FirstStart();
         musics[0].Play();
-        //fileManager.filePath = Application.persistentDataPath + "/gameData.json";
     }
 
     // Update is called once per frame
@@ -55,12 +55,6 @@ public class MenuController : MonoBehaviour
         musics[1].Play();
     }
 
-    public void GoToSettings()
-    {
-        //menuTab.SetActive(false);
-        settingsMenu.SetActive(true);
-    }
-
     private void HandleSession()
     {
         isGameActive = gameSessionEndController.sessionEnd;
@@ -76,6 +70,7 @@ public class MenuController : MonoBehaviour
             gameSession.SetActive(false);
             menuTab.SetActive(true);
             fileManager.inizialize();
+            recordManager.inizializeRecord();
         }
     }
     private void FirstStart()
@@ -83,4 +78,10 @@ public class MenuController : MonoBehaviour
         coins += gameSessionEndController.coins;
         coinsText.gameObject.GetComponent<TextMeshProUGUI>().text = "Coins: " + coins;
     }
+
+    /*public void RestartGame()
+    {
+        restartTab.SetActive(false);
+        GoToNormalLevel();
+    }*/
 }

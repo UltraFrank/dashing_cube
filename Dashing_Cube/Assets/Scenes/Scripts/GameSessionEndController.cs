@@ -8,11 +8,14 @@ public class GameSessionEndController : MonoBehaviour
     public bool isDead = false;
     public bool sessionEnd = false;
     public int coins;
+    public int meters;
     FileManager fileManager;
+    RecordManager recordManager;
     // Start is called before the first frame update
     void Awake()
     {
         fileManager = this.gameObject.GetComponent<FileManager>();
+        recordManager = this.gameObject.GetComponent<RecordManager>();
         coins = fileManager.LoadData();
     }
 
@@ -27,6 +30,7 @@ public class GameSessionEndController : MonoBehaviour
         if (isDead)
         {
             coins = FindObjectOfType<PlatformController>().meters / 10;
+            meters = coins * 10;
             SessionEnding();
         }
 
@@ -41,5 +45,6 @@ public class GameSessionEndController : MonoBehaviour
     {
         PlatformSpawner.SetActive(false);
         sessionEnd = true;
+
     }
 }
