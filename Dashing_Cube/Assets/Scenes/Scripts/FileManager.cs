@@ -24,9 +24,7 @@ public class FileManager : MonoBehaviour
             return;
         }
 
-        Debug.Log("" + filePath);
         data.coin = trueCoins;
-        Debug.Log("" + data.coin);
         saveData(data);
     }
     void saveData(Data data)
@@ -40,7 +38,6 @@ public class FileManager : MonoBehaviour
         filePath = Application.persistentDataPath + "/gameData.json";
         string json = File.ReadAllText(filePath);
         Data coins = JsonUtility.FromJson<Data>(json);
-        Debug.Log(coins.coin);
         return coins.coin;
     }
 }

@@ -25,7 +25,7 @@ public class PauseScript : MonoBehaviour
 
     void ActivatePause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && platformController.isInPause == false) //Se si preme ESC una prima volta si va in pausa
+        if (Input.GetKeyDown(KeyCode.Escape) && platformController.isInPause == false && platformController.canPause) //Se si preme ESC una prima volta si va in pausa
         {
             baseSpeed = platformController.speed;
             platformController.speed = 0;
@@ -37,7 +37,7 @@ public class PauseScript : MonoBehaviour
             platformController.playerMovement = false;
             platformController.isInPause = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && platformController.isInPause == true ) //Se si ripreme ESC si torna in game attivando i sec
+        else if (Input.GetKeyDown(KeyCode.Escape) && platformController.isInPause == true && platformController.canPause) //Se si ripreme ESC si torna in game attivando i sec
                                                                                             //di attesa per far ripartire la sessione
         {
             pauseBar.SetActive(false);

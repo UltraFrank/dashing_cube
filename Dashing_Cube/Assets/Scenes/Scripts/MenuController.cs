@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject chooseLevel;
     [SerializeField] GameObject menuTab;
     [SerializeField] GameObject gameSession;
+    [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject coinsText;
     [SerializeField] Button[] selectDifficulty;
     [SerializeField] AudioSource[] musics;
@@ -28,7 +29,7 @@ public class MenuController : MonoBehaviour
         fileManager = gameObject.GetComponentInChildren<FileManager>();
         FirstStart();
         musics[0].Play();
-        fileManager.filePath = Application.persistentDataPath + "/gameData.json";
+        //fileManager.filePath = Application.persistentDataPath + "/gameData.json";
     }
 
     // Update is called once per frame
@@ -52,6 +53,12 @@ public class MenuController : MonoBehaviour
         this.gameObject.GetComponentInChildren<PlatformController>().playerMovement = false;
         musics[0].Pause();
         musics[1].Play();
+    }
+
+    public void GoToSettings()
+    {
+        //menuTab.SetActive(false);
+        settingsMenu.SetActive(true);
     }
 
     private void HandleSession()

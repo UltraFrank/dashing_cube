@@ -10,7 +10,7 @@ public class GameSessionEndController : MonoBehaviour
     public int coins;
     FileManager fileManager;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         fileManager = this.gameObject.GetComponent<FileManager>();
         coins = fileManager.LoadData();
