@@ -62,6 +62,7 @@ public class MenuController : MonoBehaviour
 
         if (isGameActive == true)
         {
+            recordManager.inizializeRecord();
             coins += gameSessionEndController.coins;
             coinsText.gameObject.GetComponent<TextMeshProUGUI>().text = "Coins: " + coins;
             isGameActive = false;
@@ -71,7 +72,6 @@ public class MenuController : MonoBehaviour
             gameSession.SetActive(false);
             menuTab.SetActive(true);
             fileManager.inizialize();
-            recordManager.inizializeRecord();
         }
     }
     private void FirstStart()

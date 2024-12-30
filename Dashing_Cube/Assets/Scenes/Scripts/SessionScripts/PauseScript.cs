@@ -54,7 +54,7 @@ public class PauseScript : MonoBehaviour
     }
 
     public void RestartGame()
-    {
+    { 
         baseSpeed = platformController.speed;
         platformController.speed = 0;
         playerRB = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Rigidbody2D>();

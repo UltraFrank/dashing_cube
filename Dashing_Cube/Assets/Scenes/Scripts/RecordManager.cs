@@ -12,22 +12,20 @@ public class Record
 
 public class RecordManager : MonoBehaviour
 {
+    public int meters;
+    private Record record = new Record();
     public string RecordFilePath;
     // Update is called once per frame
     public void inizializeRecord()
     {
-        Record record = new Record();
-        GameSessionEndController controller = GetComponent<GameSessionEndController>();
+        GameSessionEndController controller = FindObjectOfType<GameSessionEndController>();
+
+        meters = controller.meters;
+        record.record = meters;
 
         RecordFilePath = Application.persistentDataPath + "/recordData.json";
-        
-        int meters = controller.meters;
-        if (controller == null)
-        {
-            Debug.Log("controller nullo");
-            return;
-        }
 
+        Debug.Log("" + meters);
         record.record = meters;
         SaveRecord(record);
     }
