@@ -47,4 +47,9 @@ public class GameSessionEndController : MonoBehaviour
         sessionEnd = true;
 
     }
+
+    public void GoToMenu()
+    {
+        isDead = true;
+    }
 }

@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject chooseLevel;
     [SerializeField] GameObject menuTab;
     [SerializeField] GameObject gameSession;
+    [SerializeField] GameObject restartTab;
     [SerializeField] GameObject coinsText;
     [SerializeField] Button[] selectDifficulty;
     [SerializeField] AudioSource[] musics;
@@ -79,9 +80,11 @@ public class MenuController : MonoBehaviour
         coinsText.gameObject.GetComponent<TextMeshProUGUI>().text = "Coins: " + coins;
     }
 
-    /*public void RestartGame()
+    public void RestartGame()
     {
         restartTab.SetActive(false);
         GoToNormalLevel();
-    }*/
+    }
+
+    
 }

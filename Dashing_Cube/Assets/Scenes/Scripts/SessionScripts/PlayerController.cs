@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         if(this.gameObject.transform.position.y < -12)
         {
-            FindObjectOfType<GameSessionEndController>().isDead = true;
+            FindObjectOfType<PauseScript>().RestartGame();
             transform.position = ogPosition;
         }
 
