@@ -58,13 +58,14 @@ public class PauseScript : MonoBehaviour
         baseSpeed = platformController.speed;
         platformController.speed = 0;
         playerRB = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Rigidbody2D>();
-        playerRB.Sleep();
+        playerRB.bodyType = RigidbodyType2D.Static;
 
         restartTab.SetActive(true);
     }
 
     public void EndRestartTab()
     {
+        playerRB.bodyType = RigidbodyType2D.Dynamic;
         platformController.speed = baseSpeed;
     }
 }
