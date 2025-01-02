@@ -7,7 +7,9 @@ using UnityEngine;
 [System.Serializable]
 public class Record
 {
-    public int record;
+    public int record1;
+    public int record2;
+    public int record3;
 }
 
 public class RecordManager : MonoBehaviour
@@ -20,13 +22,40 @@ public class RecordManager : MonoBehaviour
     {
         PlatformController controller = FindObjectOfType<PlatformController>();
 
+        int[] mediumLevelRecords = LoadRecord();
+        record.record1 = mediumLevelRecords[0];
+        record.record2 = mediumLevelRecords[1];
+        record.record3 = mediumLevelRecords[2];
         meters = controller.meters;
-        record.record = meters;
+        if(meters > record.record3)
+        {
+            if(meters > record.record2)
+                {
+                    if(meters > record.record1)
+                    {
+                        record.record3 = record.record2;
+                        record.record2 = record.record1;
+                        record.record1 = meters;
+                    }
+                    else
+                    {
+                        record.record3 = record.record2;
+                        record.record2 = meters;
+                    }
+                }
+                else
+                {
+                    record.record3 = meters;
+                }
+        }
 
         RecordFilePath = Application.persistentDataPath + "/recordData.json";
 
         Debug.Log("" + meters);
-        record.record = meters;
+
+        Debug.Log("" + record.record1);
+        Debug.Log("" + record.record2);
+        Debug.Log("" + record.record3);
         SaveRecord(record);
     }
     void SaveRecord(Record record)
@@ -35,12 +64,16 @@ public class RecordManager : MonoBehaviour
         File.WriteAllText(RecordFilePath, json);
     }
 
-    public int LoadRecord()
+    public int[] LoadRecord()
     {
         RecordFilePath = Application.persistentDataPath + "/recordData.json";
         string json = File.ReadAllText(RecordFilePath);
         Record record = JsonUtility.FromJson<Record>(json);
-        Debug.Log("" + record.record);
-        return record.record;
+        Debug.Log("" + record.record1);
+        Debug.Log("" + record.record2);
+        Debug.Log("" + record.record3);
+        int[] mediumLevelRecords = new int[] { record.record1, record.record2, record.record3 };
+        
+        return mediumLevelRecords;
     }
 }
