@@ -46,6 +46,7 @@ public class PlatformController : MonoBehaviour
         MovePlatform();
         SpeedOMeter();
         BreakFromPause();
+
     }
 
     void MovePlatform() //Movimento Piattaforme

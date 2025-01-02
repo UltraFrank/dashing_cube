@@ -28,9 +28,10 @@ public class GameSessionEndController : MonoBehaviour
     {
         if (isDead)
         {
-            meters = FindObjectOfType<PlatformController>().meters;
-            coins = meters/10;
+            meters = FindObjectOfType<PauseScript>().finalMeters;
+            coins = meters / 10;
             SessionEnding();
+            Debug.Log(coins);
         }
 
 
@@ -50,5 +51,11 @@ public class GameSessionEndController : MonoBehaviour
     {
         isDead = true;
         restartTab.SetActive(false);
+    }
+
+    public void HandleCoinsWhenRestart()
+    {
+        meters = FindObjectOfType<PauseScript>().finalMeters;
+        coins = meters / 10;
     }
 }

@@ -36,6 +36,10 @@ public class FileManager : MonoBehaviour
     public int LoadData()
     {
         filePath = Application.persistentDataPath + "/gameData.json";
+        if(!File.Exists(filePath)) 
+        {
+            inizialize();
+        }
         string json = File.ReadAllText(filePath);
         Data coins = JsonUtility.FromJson<Data>(json);
         return coins.coin;

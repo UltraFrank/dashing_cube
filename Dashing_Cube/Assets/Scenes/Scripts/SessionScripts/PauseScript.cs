@@ -10,6 +10,7 @@ public class PauseScript : MonoBehaviour
     float baseSpeed = 0;
 
     float numberPause = 0;
+    public int finalMeters = 0;
 
     [SerializeField] GameObject pauseBar; //Il tab di controllo della pausa
 
@@ -58,6 +59,7 @@ public class PauseScript : MonoBehaviour
     public void RestartGame()
     {
         baseSpeed = platformController.speed;
+        finalMeters = platformController.meters;
         platformController.speed = 0;
         playerRB = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Rigidbody2D>();
         playerRB.bodyType = RigidbodyType2D.Static;

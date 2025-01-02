@@ -17,6 +17,9 @@ public class MenuController : MonoBehaviour
     [SerializeField] Button[] selectDifficulty;
     [SerializeField] AudioSource[] musics;
 
+    [SerializeField] GameObject[] listofTabs; //Per indice 0 si intende il menu principale, 1 per la scelta livello,
+                                              //2 per la sessione livello, 3 per le impostazioni, 4 per record
+
     private bool isGameActive = false;
     GameSessionEndController gameSessionEndController;
     FileManager fileManager;
@@ -26,8 +29,6 @@ public class MenuController : MonoBehaviour
 
     public int coins = 0;
 
-    private int indexTab = 0; //Per 0 si intende il menu principale, 1 per la scelta livello, 2 per la sessione livello, 3 per le impostazioni, 4 per record
-    // Start is called before the first frame update
     void Start()
     {
         gameSessionEndController = gameObject.GetComponentInChildren<GameSessionEndController>();
@@ -46,21 +47,18 @@ public class MenuController : MonoBehaviour
 
     public void GoToSelection()
     {
-        indexTab = 1;
         menuTab.SetActive(false);
         chooseLevel.SetActive(true);
     }
 
     public void GoToSettings()
     {
-        indexTab = 3;
         menuTab.SetActive(false);
         settingsTab.SetActive(true);
     }
 
     public void GoToRecords()
     {
-        indexTab = 4;
         menuTab.SetActive(false);
         recordsTab.SetActive(true);
         int[] mediumLevelRecords = GetComponent<RecordManager>().LoadRecord();
@@ -80,9 +78,11 @@ public class MenuController : MonoBehaviour
         musics[1].Play();
     }
 
-    public void GoToMenu() //Per ora va da record a menu
+    public void GoToMenu() 
     {
-        recordsTab.SetActive(false);
+        foreach(GameObject scene in listofTabs)
+            scene.gameObject.SetActive(false);
+
         menuTab.SetActive(true);
     }
 
@@ -111,7 +111,11 @@ public class MenuController : MonoBehaviour
 
     public void RestartGame()
     {
+        gameSessionEndController.HandleCoinsWhenRestart();
         restartTab.SetActive(false);
+        coins += gameSessionEndController.coins;
+        fileManager.inizialize();
+        GetComponentInChildren<PauseScript>().EndRestartTab();
         GoToNormalLevel();
     }
 
