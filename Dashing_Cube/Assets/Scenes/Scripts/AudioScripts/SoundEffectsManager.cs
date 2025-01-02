@@ -10,11 +10,11 @@ public class SoundEffectsManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance == null)   //Se il singleton non esiste, lo crea
             instance = this;
     }
 
-    public void PlaySoundEffectClip(AudioClip audioClip, Transform spawnTransform, float volume)
+    public void PlaySoundEffectClip(AudioClip audioClip, Transform spawnTransform, float volume)  //Fa partire qualsiasi soundeffect tramite richiamo di questo metodo
     {
         //spawn del GameObject AudioSource
         AudioSource audioSource = Instantiate(soundEffectsClip, spawnTransform.position, Quaternion.identity);
@@ -30,6 +30,7 @@ public class SoundEffectsManager : MonoBehaviour
         //Lunghezza del SoundEffect
         float clipLength = audioSource.clip.length;
 
+        //Lo distrugge a fine effetto
         Destroy(audioSource.gameObject, clipLength);
     }
 }

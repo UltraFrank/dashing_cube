@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     {
         if (onTheField)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && this.gameObject.GetComponent<Rigidbody2D>().sleepMode == 0)
             {
                 this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * yJump, ForceMode2D.Impulse);
                 SoundEffectsManager.instance.PlaySoundEffectClip(jumpClip, transform, 1f);
