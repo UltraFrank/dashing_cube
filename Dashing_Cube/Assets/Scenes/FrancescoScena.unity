@@ -173,12 +173,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6fef14aee4055d4cb1f74b47018c128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chooseLevel: {fileID: 1215042347}
   menuTab: {fileID: 513002448}
+  chooseLevel: {fileID: 1215042347}
   gameSession: {fileID: 630433555}
   settingsTab: {fileID: 423502706}
   recordsTab: {fileID: 504854758}
   restartTab: {fileID: 605043117}
+  listofTabs:
+  - {fileID: 513002448}
+  - {fileID: 1215042347}
+  - {fileID: 630433555}
+  - {fileID: 423502706}
+  - {fileID: 504854758}
   coinsText: {fileID: 16536473}
   selectDifficulty:
   - {fileID: 0}
