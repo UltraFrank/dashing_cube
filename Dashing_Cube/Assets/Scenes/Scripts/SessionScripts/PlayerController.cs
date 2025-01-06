@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
         Jump();
         GameOver();
         HandlePlayer();
+        Debug.Log("" + onTheField);
+        Debug.Log("" + this.gameObject.GetComponent<Rigidbody2D>().sleepMode);
     }
     void Jump() //Metodo del salto
     {
@@ -32,6 +34,7 @@ public class PlayerController : MonoBehaviour
                 this.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * yJump, ForceMode2D.Impulse);
                 SoundEffectsManager.instance.PlaySoundEffectClip(jumpClip, transform, 1f);
                 onTheField = false;
+                Debug.Log("Ciao");
             }
         }
 
@@ -39,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) //Metodo per considerare il limite di salto
     {
-        if (collision.gameObject.tag == "Platform")
+        if (collision.gameObject.tag == "Platform" || collision.gameObject.tag == "BasePlatform")
             onTheField = true;
     }
 

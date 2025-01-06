@@ -97,7 +97,7 @@ public class PlatformController : MonoBehaviour
     {
 
         yield return new WaitForSeconds(5);
-        speed = 0.05f;
+        speed = 0.25f;
         if (isInPause)
             timer += 0;
         else
