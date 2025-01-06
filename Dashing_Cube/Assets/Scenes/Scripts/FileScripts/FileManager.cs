@@ -8,15 +8,24 @@ using UnityEngine;
 public class Data
 {
     public int coin;
+    public bool[] areSkinsAcquired;
 }
+
 public class FileManager : MonoBehaviour
 {
     public string filePath;
+    [SerializeField] Color[] listOfColors;
     // Update is called once per frame
     public void inizialize()
     {
         Data data = new Data();
         int trueCoins = FindObjectOfType<MenuController>().coins;
+        bool[] savedSkinsAcquired = FindObjectOfType<ShopController>().isSkinAcquired;
+        if(savedSkinsAcquired.Length == 0)
+        {
+            savedSkinsAcquired = new bool[] { true, false, false, false, false, false };
+        }
+
         GameSessionEndController controller = GetComponent<GameSessionEndController>();
         if (controller == null)
         {
@@ -24,7 +33,10 @@ public class FileManager : MonoBehaviour
             return;
         }
 
+
         data.coin = trueCoins;
+        data.areSkinsAcquired = savedSkinsAcquired;
+
         saveData(data);
     }
     void saveData(Data data)
@@ -33,7 +45,7 @@ public class FileManager : MonoBehaviour
         File.WriteAllText(filePath, json);
     }
 
-    public int LoadData()
+    public int LoadCoinsData()
     {
         filePath = Application.persistentDataPath + "/gameData.json";
         if(!File.Exists(filePath)) 
@@ -43,5 +55,17 @@ public class FileManager : MonoBehaviour
         string json = File.ReadAllText(filePath);
         Data coins = JsonUtility.FromJson<Data>(json);
         return coins.coin;
+    }
+
+    public bool[] LoadShopData()
+    {
+        filePath = Application.persistentDataPath + "/gameData.json";
+        if (!File.Exists(filePath))
+        {
+            inizialize();
+        }
+        string json = File.ReadAllText(filePath);
+        Data skins = JsonUtility.FromJson<Data>(json);
+        return skins.areSkinsAcquired;
     }
 }

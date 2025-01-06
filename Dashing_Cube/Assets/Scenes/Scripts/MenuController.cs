@@ -18,9 +18,10 @@ public class MenuController : MonoBehaviour
     [SerializeField] GameObject settingsTab;  //Tab delle impostazioni, dove potrà essere gestito il volume di gioco
     [SerializeField] GameObject recordsTab;   //Tab dei record, dove potranno essere visualizzati i record
     [SerializeField] GameObject restartTab;   //Tab del restart (dipendente da gameSession), che mostrerà i pulsanti di ritorno al menù o riavvio
+    [SerializeField] GameObject shopTab;
 
     [SerializeField] GameObject[] listofTabs; //Per indice 0 si intende il menu principale, 1 per la scelta livello,
-                                              //2 per la sessione livello, 3 per le impostazioni, 4 per record
+                                              //2 per la sessione livello, 3 per le impostazioni, 4 per record, 5 per lo shop
 
     [SerializeField] GameObject coinsText;    //Testo delle monete presente da visualizzare nel menù
 
@@ -51,6 +52,9 @@ public class MenuController : MonoBehaviour
 
         //Parte la musica del menù di gioco
         musics[0].Play();
+
+        
+        fileManager.inizialize();
     }
 
 
@@ -103,6 +107,12 @@ public class MenuController : MonoBehaviour
         mediumRecords.text = ("1°: " + mediumLevelRecords[0] + "\n" + "2°: " + mediumLevelRecords[1] + "\n" + "3°: " + mediumLevelRecords[2]);
 
 
+    }
+
+    public void GoToShop()
+    {
+        menuTab.SetActive(false);
+        shopTab.SetActive(true);
     }
 
     public void GoToMenu()  //Attivazione tab del menu disattivando tutti gli altri tab

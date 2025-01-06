@@ -17,7 +17,7 @@ public class GameSessionEndController : MonoBehaviour
     void Awake()
     {
         fileManager = this.gameObject.GetComponent<FileManager>(); //Inizializzazione della variabile FileManager
-        coins = fileManager.LoadData(); //E' il momento in cui l'INTERO GIOCO richiama le monete nel file di memoria delle monete
+        coins = fileManager.LoadCoinsData(); //E' il momento in cui l'INTERO GIOCO richiama le monete nel file di memoria delle monete
     }
 
 

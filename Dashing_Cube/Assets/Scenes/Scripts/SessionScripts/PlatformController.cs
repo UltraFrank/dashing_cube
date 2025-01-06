@@ -28,6 +28,7 @@ public class PlatformController : MonoBehaviour
 
     public void Init()
     {
+        FindObjectOfType<ShopController>().TakeRightSkin();
         canPause = false;
         if (!isFirstGame)
         {
