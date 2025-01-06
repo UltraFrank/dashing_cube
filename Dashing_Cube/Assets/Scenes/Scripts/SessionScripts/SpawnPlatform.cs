@@ -36,9 +36,8 @@ public class SpawnPlatform : MonoBehaviour
             if (menuController.isEasy)
             {
                 platformSpawner = basePlatform;
-                float randomNumber = 7;
-                platformSpawner.transform.localScale = new Vector2(randomNumber, platformController.platforms[0].transform.localScale.y);
-                randomNumber = Random.Range(40, 42); //Float che decide in che punto x far spawnare la piattaforma
+                platformSpawner.transform.localScale = new Vector2(7, 0.7f);
+                float randomNumber = Random.Range(40, 42); //Float che decide in che punto x far spawnare la piattaforma
                 GameObject newPlatform = Instantiate(platformSpawner, new Vector2(randomNumber, platformController.platforms[0].transform.position.y), Quaternion.identity);
                 newPlatform.transform.parent = platforms.transform;
                 platformController.platforms.Add(newPlatform); //Aggiunge la piattaforma alla lista delle piattaforme, con valori randomici sulla lunghezza
@@ -50,7 +49,7 @@ public class SpawnPlatform : MonoBehaviour
             {
                 platformSpawner = basePlatform;
                 float randomNumber = Random.Range(5, 9); //Float che decide il cambio di scale nell'asse x della nuova piattaforma spawnata
-                platformSpawner.transform.localScale = new Vector2(randomNumber, platformController.platforms[0].transform.localScale.y);
+                platformSpawner.transform.localScale = new Vector2(randomNumber, 0.7f);
                 randomNumber = Random.Range(40, 42); //Float che decide in che punto x far spawnare la piattaforma
                 GameObject newPlatform = Instantiate(platformSpawner, new Vector2(randomNumber, platformController.platforms[0].transform.position.y), Quaternion.identity);
                 newPlatform.transform.parent = platforms.transform;
@@ -63,7 +62,7 @@ public class SpawnPlatform : MonoBehaviour
             {
                 platformSpawner = basePlatform;
                 float randomNumber = Random.Range(5, 9); //Float che decide il cambio di scale nell'asse x della nuova piattaforma spawnata
-                platformSpawner.transform.localScale = new Vector2(randomNumber, randomNumber = Random.Range(-2.66f, -1.66f));
+                platformSpawner.transform.localScale = new Vector2(randomNumber, randomNumber = Random.Range(1, 3));
                 randomNumber = Random.Range(40, 42); //Float che decide in che punto x far spawnare la piattaforma
                 GameObject newPlatform = Instantiate(platformSpawner, new Vector2(randomNumber, platformController.platforms[0].transform.position.y), Quaternion.identity);
                 newPlatform.transform.parent = platforms.transform;
