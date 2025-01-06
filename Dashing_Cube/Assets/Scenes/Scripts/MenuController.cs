@@ -33,6 +33,9 @@ public class MenuController : MonoBehaviour
 
 
     private bool isGameActive = false;   //Flag che controlla se una sessione di gioco è in corso oppure no
+    public bool isEasy = false;
+    public bool isNormal = false;
+    public bool isHard = false;
 
 
     GameSessionEndController gameSessionEndController; //Richiamo dello script GameSessionEndController, per il controllo della fine di una sessione di gioco
@@ -75,12 +78,53 @@ public class MenuController : MonoBehaviour
         menuTab.SetActive(false);
         chooseLevel.SetActive(true);
     }
+    public void GoToEasyLevel()  //Attivazione della sessione di gioco
+    {
+        chooseLevel.SetActive(false);
+        gameSession.SetActive(true);
+
+        isEasy = true;
+        isNormal = false;
+        isHard = false;
+
+        //Metodo che inizializza le componenti del livello di gioco utili allo start di esso
+        this.gameObject.GetComponentInChildren<PlatformController>().Init();
+
+        //Movimento del player posto a false per poter avere un inizio di gioco rinviato di qualche secondo dall'inizio del caricamento della sessione
+        this.gameObject.GetComponentInChildren<PlatformController>().playerMovement = false;
+
+        musics[0].Pause(); //Musica del menù stoppata
+        musics[1].Play();  //Musica del livello
+    }
     public void GoToNormalLevel()  //Attivazione della sessione di gioco
     {
         chooseLevel.SetActive(false);
         gameSession.SetActive(true);
+
+        isEasy = false;
+        isNormal = true;
+        isHard = false;
+
         //Metodo che inizializza le componenti del livello di gioco utili allo start di esso
-         this.gameObject.GetComponentInChildren<PlatformController>().Init();
+        this.gameObject.GetComponentInChildren<PlatformController>().Init();
+
+        //Movimento del player posto a false per poter avere un inizio di gioco rinviato di qualche secondo dall'inizio del caricamento della sessione
+        this.gameObject.GetComponentInChildren<PlatformController>().playerMovement = false;
+
+        musics[0].Pause(); //Musica del menù stoppata
+        musics[1].Play();  //Musica del livello
+    }
+    public void GoToHardLevel()  //Attivazione della sessione di gioco
+    {
+        chooseLevel.SetActive(false);
+        gameSession.SetActive(true);
+
+        isEasy = false;
+        isNormal = false;
+        isHard = true;
+
+        //Metodo che inizializza le componenti del livello di gioco utili allo start di esso
+        this.gameObject.GetComponentInChildren<PlatformController>().Init();
 
         //Movimento del player posto a false per poter avere un inizio di gioco rinviato di qualche secondo dall'inizio del caricamento della sessione
         this.gameObject.GetComponentInChildren<PlatformController>().playerMovement = false;
@@ -161,6 +205,11 @@ public class MenuController : MonoBehaviour
         GetComponentInChildren<PauseScript>().EndRestartTab();
 
         //Riavvio di una nuova sessione di gioco
-        GoToNormalLevel();
+        if (isEasy)
+            GoToEasyLevel();
+        else if (isNormal)  
+            GoToNormalLevel();
+        else if (isHard)
+            GoToHardLevel();
     }  
 }
