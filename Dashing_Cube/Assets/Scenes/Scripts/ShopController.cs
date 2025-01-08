@@ -4,23 +4,33 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
+using System.Drawing;
 
 public class ShopController : MonoBehaviour
 {
     [HideInInspector]  public bool[] isSkinAcquired;
-    [SerializeField] Color[] colorsSkins;
+    [SerializeField] UnityEngine.Color[] colorsSkins;
     [SerializeField] int[] coinsRequired;
     [SerializeField] Button[] buttonsShop;
     [SerializeField] GameObject player;
+    [SerializeField] GameObject coinsText;
     FileManager fileManager;
+    GameSessionEndController gameSessionEndController;
     bool[] isAlreadySelected;
+    int coins;
+    
     // Start is called before the first frame update
     void Awake()
     {
 
         isAlreadySelected = new bool[] { true, false, false, false, false, false };
-        fileManager = gameObject.GetComponentInChildren<FileManager>();
+        fileManager = GetComponentInChildren<FileManager>();
+        gameSessionEndController = GetComponentInChildren<GameSessionEndController>();
         isSkinAcquired = fileManager.LoadShopData();
+
+        coins += gameSessionEndController.coins;
+        coinsText.gameObject.GetComponent<TextMeshProUGUI>().text = "Coins: " + coins;
     }
 
     // Update is called once per frame
