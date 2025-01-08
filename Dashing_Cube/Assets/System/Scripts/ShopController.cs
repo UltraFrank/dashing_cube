@@ -4,7 +4,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 using System.Drawing;
 
 public class ShopController : MonoBehaviour
