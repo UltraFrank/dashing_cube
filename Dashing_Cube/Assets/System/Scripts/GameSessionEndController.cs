@@ -41,7 +41,7 @@ public class GameSessionEndController : MonoBehaviour
     public void SessionStarting()          //Metodo che viene richiamato dal pulsante di creazione della nuova sessione di gioco, che ha come unico scopo
                                            //la riattivazione dell'oggetto di Spawn delle piattaforme
     {
-        PlatformSpawner.SetActive(true);         
+        PlatformSpawner.SetActive(true);
     }
     public void SessionEnding()
     {

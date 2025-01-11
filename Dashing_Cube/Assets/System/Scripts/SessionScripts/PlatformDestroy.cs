@@ -15,9 +15,9 @@ public class PlatformDestroy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Platform" && !isDestroyed)
         {
-            Destroy(platformController.platforms[0]);
-            platformController.platforms.RemoveAt(0);
-            isDestroyed = true;
+            Destroy(platformController.platforms[0]); //Distruggi la piattaforma che è prima nell'array di piattaforme
+            platformController.platforms.RemoveAt(0); //Rimuove la piattaforma dall'array
+            isDestroyed = true;  //Boolean che serve per evitare possibili bug
         }
     }
 

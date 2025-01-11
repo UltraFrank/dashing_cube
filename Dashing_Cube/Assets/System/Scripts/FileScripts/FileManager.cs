@@ -15,11 +15,14 @@ public class FileManager : MonoBehaviour
 {
     public string filePath;
     [SerializeField] Color[] listOfColors;
-    // Update is called once per frame
+
     public void inizialize()
     {
         Data data = new Data();
-        int trueCoins = FindObjectOfType<MenuController>().coins;
+        int trueCoins = LoadCoinsData();
+        if (trueCoins != FindObjectOfType<MenuController>().coins)
+            trueCoins = FindObjectOfType<MenuController>().coins;
+        Debug.Log(trueCoins);
         bool[] savedSkinsAcquired = FindObjectOfType<ShopController>().isSkinAcquired;
         if(savedSkinsAcquired.Length == 0)
         {

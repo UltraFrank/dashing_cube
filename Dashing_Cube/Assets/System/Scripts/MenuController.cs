@@ -28,8 +28,9 @@ public class MenuController : MonoBehaviour
 
     [SerializeField] AudioSource[] musics;     //Elenco di TUTTE le musiche presenti in gioco
 
+    [SerializeField] TextMeshProUGUI easyRecords;     //Classifica dei top 3 record del livello facile presente nel RecordTab
     [SerializeField] TextMeshProUGUI mediumRecords;   //Classifica dei top 3 record del livello medio presente nel RecordTab
-
+    [SerializeField] TextMeshProUGUI hardRecords;     //Classifica dei top 3 record del livello difficile presente nel RecordTab
 
     private bool isGameActive = false;   //Flag che controlla se una sessione di gioco è in corso oppure no
     public bool isEasy = false;
@@ -44,7 +45,7 @@ public class MenuController : MonoBehaviour
 
     public int coins = 0;                               //Valore delle monete
 
-    void Start()
+    void Awake()
     {
         gameSessionEndController = gameObject.GetComponentInChildren<GameSessionEndController>();
         fileManager = gameObject.GetComponentInChildren<FileManager>();
@@ -66,11 +67,13 @@ public class MenuController : MonoBehaviour
     }
     private void FirstStart()  //Controllo delle monete caricate dal file di memorizzazione
     {
-        coins += gameSessionEndController.coins;
-        coinsText.gameObject.GetComponent<TextMeshProUGUI>().text = "Coins: " + coins;
+        if (gameSessionEndController != null )
+        {
+            coins += gameSessionEndController.coins;
+            coinsText.gameObject.GetComponent<TextMeshProUGUI>().text = "Coins: " + coins;
+        }
+
     }
-
-
 
     public void GoToSelection()  //Attivazione tab di selezione del livello
     {
@@ -128,7 +131,7 @@ public class MenuController : MonoBehaviour
         //Movimento del player posto a false per poter avere un inizio di gioco rinviato di qualche secondo dall'inizio del caricamento della sessione
         this.gameObject.GetComponentInChildren<PlatformController>().playerMovement = false;
 
-        musics[0].Pause(); //Musica del menù stoppata
+        musics[0].Stop(); //Musica del menù stoppata
         musics[1].Play();  //Musica del livello
     }
 
@@ -143,11 +146,16 @@ public class MenuController : MonoBehaviour
         menuTab.SetActive(false);
         recordsTab.SetActive(true);
 
+
         //Gestisce i record del livello medio richiamando il RecordManager
-        int[] mediumLevelRecords = GetComponent<RecordManager>().LoadRecord();
+        int[] easyLevelRecords = GetComponent<RecordManager>().LoadEasyRecord();
+        int[] mediumLevelRecords = GetComponent<RecordManager>().LoadMediumRecord();
+        int[] hardLevelRecords = GetComponent<RecordManager>().LoadHardRecord();
 
         //Visualizzazione testuale dei record
+        easyRecords.text = ("1°: " + easyLevelRecords[0] + "\n" + "2°: " + easyLevelRecords[1] + "\n" + "3°: " + easyLevelRecords[2]);
         mediumRecords.text = ("1°: " + mediumLevelRecords[0] + "\n" + "2°: " + mediumLevelRecords[1] + "\n" + "3°: " + mediumLevelRecords[2]);
+        hardRecords.text = ("1°: " + hardLevelRecords[0] + "\n" + "2°: " + hardLevelRecords[1] + "\n" + "3°: " + hardLevelRecords[2]);
 
 
     }
@@ -164,6 +172,10 @@ public class MenuController : MonoBehaviour
         foreach(GameObject scene in listofTabs)
             scene.gameObject.SetActive(false);
 
+        coinsText.gameObject.GetComponent<TextMeshProUGUI>().text = "Coins: " + coins; //Monete aggiornate
+        musics[1].Stop(); //Musica del livello stoppata
+        musics[0].Play();  //Musica del menù
+
         menuTab.SetActive(true);
     }
 
@@ -174,6 +186,9 @@ public class MenuController : MonoBehaviour
 
         if (isGameActive == true) //Se sessione conclusa
         {
+            musics[1].Stop(); //Musica del livello stoppata
+            musics[0].Play();  //Musica del menù
+
             coins += gameSessionEndController.coins;  //Aggiornamento monete
             coinsText.gameObject.GetComponent<TextMeshProUGUI>().text = "Coins: " + coins; //Aggiornamento testo delle monete sul menù
             isGameActive = false;

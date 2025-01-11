@@ -6,7 +6,6 @@ public class PauseScript : MonoBehaviour
 {
     PlatformController platformController;
     Rigidbody2D playerRB;
-    RecordManager recordManager;
     float baseSpeed = 0;
 
     float numberPause = 0;
@@ -15,10 +14,9 @@ public class PauseScript : MonoBehaviour
     [SerializeField] GameObject pauseBar; //Il tab di controllo della pausa
 
     [SerializeField] GameObject restartTab;
-    // Start is called before the first frame update
+
     void Start()
     {
-        recordManager = gameObject.GetComponentInParent<RecordManager>();
         platformController = GetComponentInChildren<PlatformController>();
     }
 
@@ -60,6 +58,7 @@ public class PauseScript : MonoBehaviour
     {
         baseSpeed = platformController.speed;
         finalMeters = platformController.meters;
+        FindObjectOfType<RecordManager>().inizializeRecord(finalMeters);
         platformController.speed = 0;
         playerRB = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Rigidbody2D>();
         playerRB.bodyType = RigidbodyType2D.Static;
@@ -71,5 +70,6 @@ public class PauseScript : MonoBehaviour
     {
         playerRB.bodyType = RigidbodyType2D.Dynamic;
         platformController.speed = baseSpeed;
+        platformController.isInPause = false;
     }
 }
