@@ -22,8 +22,9 @@ public class FileManager : MonoBehaviour
         int trueCoins = LoadCoinsData();
         if (trueCoins != FindObjectOfType<MenuController>().coins)
             trueCoins = FindObjectOfType<MenuController>().coins;
-        Debug.Log(trueCoins);
+
         bool[] savedSkinsAcquired = FindObjectOfType<ShopController>().isSkinAcquired;
+
         if(savedSkinsAcquired.Length == 0)
         {
             savedSkinsAcquired = new bool[] { true, false, false, false, false, false };
@@ -53,7 +54,8 @@ public class FileManager : MonoBehaviour
         filePath = Application.persistentDataPath + "/gameData.json";
         if(!File.Exists(filePath)) 
         {
-            inizialize();
+            Data data = new Data();
+            saveData(data);
         }
         string json = File.ReadAllText(filePath);
         Data coins = JsonUtility.FromJson<Data>(json);
@@ -65,7 +67,8 @@ public class FileManager : MonoBehaviour
         filePath = Application.persistentDataPath + "/gameData.json";
         if (!File.Exists(filePath))
         {
-            inizialize();
+            Data data = new Data();
+            saveData(data);
         }
         string json = File.ReadAllText(filePath);
         Data skins = JsonUtility.FromJson<Data>(json);

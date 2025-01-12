@@ -31,6 +31,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] TextMeshProUGUI easyRecords;     //Classifica dei top 3 record del livello facile presente nel RecordTab
     [SerializeField] TextMeshProUGUI mediumRecords;   //Classifica dei top 3 record del livello medio presente nel RecordTab
     [SerializeField] TextMeshProUGUI hardRecords;     //Classifica dei top 3 record del livello difficile presente nel RecordTab
+    [SerializeField] TextMeshProUGUI coinsShopText;   //Testo che visualizza le monete nel negozio
 
     private bool isGameActive = false;   //Flag che controlla se una sessione di gioco è in corso oppure no
     public bool isEasy = false;
@@ -57,6 +58,11 @@ public class MenuController : MonoBehaviour
         musics[0].Play();
 
         
+
+    }
+
+    private void Start()
+    {
         fileManager.inizialize();
     }
 
@@ -164,6 +170,7 @@ public class MenuController : MonoBehaviour
     {
         menuTab.SetActive(false);
         shopTab.SetActive(true);
+        coinsShopText.gameObject.GetComponent<TextMeshProUGUI>().text = "Coins: " + coins;
     }
 
     public void GoToMenu()  //Attivazione tab del menu disattivando tutti gli altri tab
@@ -225,5 +232,10 @@ public class MenuController : MonoBehaviour
             GoToNormalLevel();
         else if (isHard)
             GoToHardLevel();
-    }  
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }

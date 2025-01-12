@@ -54,6 +54,7 @@ public class ShopController : MonoBehaviour
     void Update()
     {
         IsSkinSelected();
+        
     }
 
     public void TakeRightSkin()
