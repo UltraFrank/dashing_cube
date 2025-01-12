@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlatformController : MonoBehaviour
 {
     public List<GameObject> platforms = new List<GameObject>();
-    public float speed = 0.05f;
+    public float speed;
     [SerializeField] TextMeshProUGUI metersText;
     public float timer = 0;
     public int meters = 0;
@@ -97,7 +97,7 @@ public class PlatformController : MonoBehaviour
     {
 
         yield return new WaitForSeconds(5);
-        speed = 0.25f;
+        speed = 0.5f;
         if (isInPause)
             timer += 0;
         else
